@@ -86,7 +86,6 @@ function checkGameOver() {
   }
 }
 
-
 boxes.forEach((box, index) => {
   box.addEventListener("click", () => {
     handleClick(index);
