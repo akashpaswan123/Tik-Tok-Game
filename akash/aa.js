@@ -1,11 +1,10 @@
-// 
 
 const boxes = document.querySelectorAll(".box");
 const gameInfo = document.querySelector(".game-info");
 const newGamebtn = document.querySelector(".btn");
-// Decide the current Turn
+
 let currentPlayer;
-// All possible combinations for winning
+
 const winningPostions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -18,7 +17,6 @@ const winningPostions = [
 ];
 let gameGrid;
 
-// Start The Game
 function initGame() {
   currentPlayer = "x";
   gameGrid = ["", "", "", "", "", "", "", "", ""];
@@ -32,7 +30,6 @@ function initGame() {
 }
 
 
-// Switch player turn on click
 function swapTurn() {
   if (currentPlayer === "x") {
     currentPlayer = "o";
@@ -42,9 +39,7 @@ function swapTurn() {
   gameInfo.innerText = `Current Player - ${currentPlayer.toUpperCase()}`;
 }
 
-// Event listener
 function handleClick(index) {
-  // Make sure only, Empty cells are filled
   if (gameGrid[index] === "") {
     boxes[index].style.pointerEvents = "none";
     boxes[index].innerHTML = currentPlayer.toUpperCase();
@@ -54,7 +49,6 @@ function handleClick(index) {
   }
 }
 
-// Check if game is over
 function checkGameOver() {
   let result = "";
   winningPostions.forEach((position) => {
@@ -75,7 +69,7 @@ function checkGameOver() {
       boxes[position[2]].classList.add("win");
     }
   });
-  //  We Have A Winner
+
   if (result !== "") {
     gameInfo.innerText = `Winner Player - ${result}`;
     newGamebtn.classList.add("active");
@@ -85,7 +79,7 @@ function checkGameOver() {
   gameGrid.forEach((box) => {
     if (box === "") boardFilled = false;
   });
-  // Board is filled, but game is tie
+  
   if (boardFilled) {
     gameInfo.innerText = "Game Tied !";
     newGamebtn.classList.add("active");
@@ -93,7 +87,7 @@ function checkGameOver() {
   }
 }
 
-// adding event listeners
+
 boxes.forEach((box, index) => {
   box.addEventListener("click", () => {
     handleClick(index);
